@@ -1,4 +1,4 @@
-import { JsonController, Get, Param, Put, Body, Post, HttpCode, NotFoundError } from 'routing-controllers'
+import { Authorized, JsonController, Get, Param, Put, Body, Post, HttpCode, NotFoundError } from 'routing-controllers'
 import Batch from './entity'
 
 @JsonController()
@@ -17,6 +17,7 @@ export default class BatchController {
         return {batches}
     }
 
+    @Authorized()
     @Put('/batches/:id')
     async updateBatch(
       @Param('id') id: number,
@@ -29,6 +30,7 @@ export default class BatchController {
       return Batch.merge(batch, update).save()
     }
 
+    @Authorized()
     @Post('/batches')
     @HttpCode(201)
     createBatch(
