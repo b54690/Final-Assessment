@@ -2,6 +2,8 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
 import { Exclude } from 'class-transformer';
 import { MinLength, IsEmail, IsString } from 'class-validator'
+import * as bcrypt from 'bcrypt'
+
 
 @Entity()
 export default class User extends BaseEntity {
@@ -25,8 +27,16 @@ export default class User extends BaseEntity {
 
   @IsString()
   @MinLength(8)
-  @Column('text')
+  @Column('text', { nullable:true })
   @Exclude({ toPlainOnly: true })
-  @Column('text', {nullable:true})
   password: string
+
+  async setPassword(rawPassword: string) {
+    const hash = await bcrypt.hash(rawPassword, 10)
+    this.password = hash
+}
+
+  checkPassword(rawPassword: string): Promise<boolean> {
+    return bcrypt.compare(rawPassword, this.password)
+}
 }

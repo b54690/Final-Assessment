@@ -1,4 +1,4 @@
-import { Post, Param, HttpCode, Get, Body, JsonController, Put, NotFoundError, Delete} from 'routing-controllers'
+import { Authorized, Post, Param, HttpCode, Get, Body, JsonController, Put, NotFoundError, Delete} from 'routing-controllers'
 import Student from './entity';
 import * as request from 'superagent'
 
@@ -23,6 +23,7 @@ export default class StudentController {
         return studentsByClass 
     }
 
+    @Authorized()
     @Post('/students')
     @HttpCode(201)
     async addStudent(
@@ -41,7 +42,7 @@ export default class StudentController {
         return { student }
       }
 
-
+    @Authorized()
     @Put('/students/:id')
     async updateStudent(
         @Param('id') id: number,
@@ -53,7 +54,8 @@ export default class StudentController {
         const entity = await studentUpdated.save()
         return entity
     }
-
+    
+    @Authorized()
     @Delete('/students/:id')
     async deleteStudent(
         @Param('id') id: number

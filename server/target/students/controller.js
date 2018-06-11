@@ -65,6 +65,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StudentController.prototype, "getStudentsByClass", null);
 __decorate([
+    routing_controllers_1.Authorized(),
     routing_controllers_1.Post('/students'),
     routing_controllers_1.HttpCode(201),
     __param(0, routing_controllers_1.Body()),
@@ -80,6 +81,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], StudentController.prototype, "student", null);
 __decorate([
+    routing_controllers_1.Authorized(),
     routing_controllers_1.Put('/students/:id'),
     __param(0, routing_controllers_1.Param('id')),
     __param(1, routing_controllers_1.Body()),
@@ -88,6 +90,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], StudentController.prototype, "updateStudent", null);
 __decorate([
+    routing_controllers_1.Authorized(),
     routing_controllers_1.Delete('/students/:id'),
     __param(0, routing_controllers_1.Param('id')),
     __metadata("design:type", Function),
