@@ -11,33 +11,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const BaseEntity_1 = require("typeorm/repository/BaseEntity");
+const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
-let Batch = class Batch extends BaseEntity_1.BaseEntity {
+let User = class User extends BaseEntity_1.BaseEntity {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], Batch.prototype, "id", void 0);
+], User.prototype, "id", void 0);
 __decorate([
     class_validator_1.IsString(),
     typeorm_1.Column('text', { nullable: false }),
+    class_validator_1.MinLength(2),
     __metadata("design:type", String)
-], Batch.prototype, "title", void 0);
+], User.prototype, "firstName", void 0);
 __decorate([
-    class_validator_1.IsDate(),
     class_validator_1.IsString(),
     typeorm_1.Column('text', { nullable: false }),
-    class_validator_1.MinLength(10),
+    class_validator_1.MinLength(2),
     __metadata("design:type", String)
-], Batch.prototype, "startDate", void 0);
+], User.prototype, "lastName", void 0);
 __decorate([
-    class_validator_1.IsDate(),
+    class_validator_1.IsEmail(),
     typeorm_1.Column('text', { nullable: false }),
-    class_validator_1.MinLength(10),
     __metadata("design:type", String)
-], Batch.prototype, "endDate", void 0);
-Batch = __decorate([
+], User.prototype, "email", void 0);
+__decorate([
+    class_validator_1.IsString(),
+    class_validator_1.MinLength(8),
+    typeorm_1.Column('text'),
+    class_transformer_1.Exclude({ toPlainOnly: true }),
+    typeorm_1.Column('text', { nullable: true }),
+    __metadata("design:type", String)
+], User.prototype, "password", void 0);
+User = __decorate([
     typeorm_1.Entity()
-], Batch);
-exports.default = Batch;
+], User);
+exports.default = User;
 //# sourceMappingURL=entity.js.map

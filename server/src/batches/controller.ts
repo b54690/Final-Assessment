@@ -24,7 +24,7 @@ export default class BatchController {
     ) {
     
       const batch = await Batch.findOne(id);
-      if (!batch) throw new NotFoundError('Cannot find class')
+      if (!batch) throw new NotFoundError('Cannot find batch')
     
       return Batch.merge(batch, update).save()
     }

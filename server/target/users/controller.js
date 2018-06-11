@@ -14,55 +14,55 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
 const entity_1 = require("./entity");
-let BatchController = class BatchController {
-    getBatch(id) {
+let UserController = class UserController {
+    getUser(id) {
         return entity_1.default.findOne(id);
     }
-    async allBatches() {
-        const batches = await entity_1.default.find();
-        return { batches };
+    async allUsers() {
+        const users = await entity_1.default.find();
+        return { users };
     }
-    async updateBatch(id, update) {
-        const batch = await entity_1.default.findOne(id);
-        if (!batch)
-            throw new routing_controllers_1.NotFoundError('Cannot find batch');
-        return entity_1.default.merge(batch, update).save();
+    async updateUser(id, update) {
+        const user = await entity_1.default.findOne(id);
+        if (!user)
+            throw new routing_controllers_1.NotFoundError('Cannot find user');
+        return entity_1.default.merge(user, update).save();
     }
-    createBatch(batch) {
-        return batch.save();
+    createUser(user) {
+        return user.save();
     }
 };
 __decorate([
-    routing_controllers_1.Get('/batches/:id'),
+    routing_controllers_1.Get('/users/:id'),
     __param(0, routing_controllers_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
-], BatchController.prototype, "getBatch", null);
+], UserController.prototype, "getUser", null);
 __decorate([
-    routing_controllers_1.Get('/batches'),
+    routing_controllers_1.Get('/users'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], BatchController.prototype, "allBatches", null);
+], UserController.prototype, "allUsers", null);
 __decorate([
-    routing_controllers_1.Put('/batches/:id'),
+    routing_controllers_1.Put('/users/:id'),
     __param(0, routing_controllers_1.Param('id')),
     __param(1, routing_controllers_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
-], BatchController.prototype, "updateBatch", null);
+], UserController.prototype, "updateUser", null);
 __decorate([
-    routing_controllers_1.Post('/batches'),
+    routing_controllers_1.Post('/users'),
     routing_controllers_1.HttpCode(201),
     __param(0, routing_controllers_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [entity_1.default]),
     __metadata("design:returntype", void 0)
-], BatchController.prototype, "createBatch", null);
-BatchController = __decorate([
+], UserController.prototype, "createUser", null);
+UserController = __decorate([
     routing_controllers_1.JsonController()
-], BatchController);
-exports.default = BatchController;
+], UserController);
+exports.default = UserController;
 //# sourceMappingURL=controller.js.map
