@@ -12,32 +12,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const BaseEntity_1 = require("typeorm/repository/BaseEntity");
 const class_validator_1 = require("class-validator");
-let Batch = class Batch extends BaseEntity_1.BaseEntity {
+let Student = class Student extends BaseEntity_1.BaseEntity {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], Batch.prototype, "id", void 0);
+], Student.prototype, "id", void 0);
 __decorate([
     class_validator_1.IsString(),
     typeorm_1.Column('text', { nullable: false }),
     __metadata("design:type", String)
-], Batch.prototype, "title", void 0);
+], Student.prototype, "name", void 0);
 __decorate([
-    class_validator_1.IsDate(),
-    class_validator_1.IsString(),
     typeorm_1.Column('text', { nullable: false }),
-    class_validator_1.MinLength(10),
     __metadata("design:type", String)
-], Batch.prototype, "startDate", void 0);
+], Student.prototype, "picture", void 0);
 __decorate([
-    class_validator_1.IsDate(),
-    typeorm_1.Column('text', { nullable: false }),
-    class_validator_1.MinLength(10),
+    typeorm_1.Column('text', { nullable: true }),
+    __metadata("design:type", Number)
+], Student.prototype, "batchId", void 0);
+__decorate([
+    typeorm_1.Column('text', { nullable: true, default: 'Grey' }),
     __metadata("design:type", String)
-], Batch.prototype, "endDate", void 0);
-Batch = __decorate([
+], Student.prototype, "latestEvaluation", void 0);
+Student = __decorate([
     typeorm_1.Entity()
-], Batch);
-exports.default = Batch;
+], Student);
+exports.default = Student;
 //# sourceMappingURL=entity.js.map
